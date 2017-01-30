@@ -85,10 +85,11 @@ Default layout, loads most of the pages
             <block type="core/text_list" name="left" as="left" translate="label">
                 <label>Left Column</label>
             </block>
+
             <block type="core/messages" name="global_messages" as="global_messages"/>
             <block type="core/messages" name="messages" as="messages"/>
 
-            <block type="core/text_list" name="content" as="content" translate="label" >
+            <block type="core/text_list" name="content" as="content" translate="label">
                 <label>Main Content Area</label>
             </block>
 
@@ -113,13 +114,22 @@ Default layout, loads most of the pages
 
         <block type="core/profiler" output="toHtml" name="core_profiler"/>
     </default>
-    <!--Hello World text added here-->
     <default>
      <reference name="content">
-      <block type="core/template" name="page.html.test" template="page/html/test.phtml" />
+      <block type="core/template" name="catalog.test" template="catalog/test.phtml" />
+      <action method="setTemplate"><template>catalog/test.phtml</template></action>
      </reference>
     </default>
-    <!----------------X----------------->
+    <!-- <catalog_category_default>
+     <reference name="content">
+      <remove name="catalog.test"/>
+     </reference>
+    </catalog_category_default> -->
+    <catalog_category_layered>
+     <reference name="right">
+      <remove name="catalog.test"/>
+     </reference>
+    </catalog_category_layered>
     <print translate="label" module="page">
         <label>All Pages (Print Version)</label>
         <!-- Mage_Page -->
@@ -185,6 +195,7 @@ Default layout, loads most of the pages
             <action method="setIsHandle"><applied>1</applied></action>
         </reference>
     </page_two_columns_right>
+
     <page_three_columns translate="label">
         <label>All Three-Column Layout Pages</label>
         <reference name="root">
@@ -193,12 +204,4 @@ Default layout, loads most of the pages
             <action method="setIsHandle"><applied>1</applied></action>
         </reference>
     </page_three_columns>
- <!--new.css added here-->
- <checkout_cart_index>
-  <reference name='head'>
-   <action method="addCss"><stylesheet>css/new.css</stylesheet></action>
-   <action method="addJs"><script>varien/js.js</script></action>
-  </reference>
- </checkout_cart_index>
- <!----------------X----------------->
 </layout>
